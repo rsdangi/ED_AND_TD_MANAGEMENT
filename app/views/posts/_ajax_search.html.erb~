@@ -99,5 +99,9 @@
 		{
 		alert('hello ram');
 		}
-jibhhub
+<<<<<<< HEAD
+
+=======
+jsfsdf
+>>>>>>> new_ram_demo
 </SCRIPT>
