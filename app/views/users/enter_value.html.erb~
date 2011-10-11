@@ -1,0 +1,81 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%= javascript_include_tag 'ajax_enter' %>
+  <table align = "center"border="0" cellpadding="10" text-align="left">
+  <div id="field" border = "1">
+
+	<tr>
+     <td> <%= f.label :Select_user_type %><br /> </td>
+      <td> <%= f.select(:usertype_id, Usertype.all.map{|p| [p.level, p.id]}) %></td>
+     <td><%#= f.select(:usertype_id, options_for_select([['', 1], ['', 2]])) %> </td>
+    
+   </tr>
+
+   <tr>
+     <td> <%= f.label :username %><br /> </td>
+     <td> <%= f.text_field :username %>  </td>
+   </tr>
+
+	
+
+  </div>
+  
+  <div id="field">
+      <tr>  
+      <td><%= f.label :last_name %><br /></td>
+      <td><%= f.text_field :last_name %></td>
+      </tr>  
+  </div>
+  <div id="field">
+      <tr>
+       <td> <%= f.label :password %><br /> </td>
+       <td> <%= f.password_field :password %>   </td>
+      </tr> 
+	</div>
+
+	<div id="field">
+      <tr>
+       <td> <%= f.label :Re_enter_password %><br /> </td>
+       <td> <%= f.password_field :password_confirmation %>   </td>
+      </tr> 
+	</div>
+
+  <div id="field">
+   <tr>
+    <td> <%= f.label :address %><br /> </td>
+    <td> <%= f.text_field :address %>  </td>
+   </tr>
+   </div>
+  <div id="field">
+	 <tr> 
+   <td><%= f.label :email %><br /></td>
+   <td><%= f.text_field :email %><td>
+  </tr> 
+  <tr>
+   <td><%= f.label :Re_enter_email%><br /></td>
+	 <td><%= f.text_field :email_confirmation %></td>
+  </tr> 
+ </div>
+  <div id="field">
+  <tr>
+    <td><%= f.label :mobile_no %><br /></td>
+    <td><%= f.text_field :mobile_no %></td>
+  </tr>
+  </div>
+  <div id="actions">
+   <tr>
+     <td><%= submit_tag "Register " onclick="ajax_enter('<%=enter_value_submit_users_path%>')" %></td> 
+   </tr>
+  </div>
+</table>
+<% end %>

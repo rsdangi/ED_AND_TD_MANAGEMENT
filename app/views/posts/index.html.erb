@@ -1,0 +1,33 @@
+<div class="flickr_pagination">
+	<%= will_paginate(@posts) %>
+</div>
+<h2 align ="center"> Post lists</h2>
+<div id ="search">
+	<p aling ="center"> 
+	<%= form_for(:post ,:url=> search_user_posts_path(current_user)) do |f| %>
+	<%= f.label :search %><%=@total%>
+	<%= f.text_field :search,:value=>@search_title %>
+	<%#= f.submit "simple search"%>
+	<input type="button" value="search" onclick="ajax_search('<%=current_user.id%>')" />
+<%end%>
+</p>
+</div>
+<div id ="add_new_post" >
+	<p align= "left" style="font-size:20px;">
+		<div id ="add_post" style ="margin-left:140px;">
+			<%= link_to 'Add new post',  new_user_post_path(current_user) %>
+		</div>
+	</p>
+</div>
+<div id ="ajax_search">
+	<%= render :partial=>"ajax_search"%>
+</div>
+<script type="text/javascript">
+	function show()
+  {
+    alert('ram');
+  }
+</script>
+
+
+

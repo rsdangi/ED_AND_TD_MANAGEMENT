@@ -1,0 +1,1 @@
+<p> Time is"<%= DateTime.now.to_s %>

@@ -1,0 +1,51 @@
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ <%= form_for(@comments) do |f| %>
+    <% debugger%>
+ <% end %>
+<table align = "center" cellpadding = "20" >
+				<div class="field">
+       <tr> 
+ 	        <td><%= f.label :Post_type %></td> <br />
+  	       <td> <%= f.select(:post_types_id, PostType.all.map{|p| [p.types, p.id]}) %></td>
+					
+        </tr>
+  	  </div>
+
+    	<div class="field">
+       <tr> 
+ 	        <td><%= f.label :users %></td> <br />
+  	       <td><%= current_user.username%><%= f.hidden_field :users_id ,:value=>current_user.id%></td>
+        </tr>
+  	</div>
+    
+	  <div class="field">
+      <tr>  
+	        <td>  <%= f.label :title %> </td><br />
+	       <td> <%= f.text_field :title %></td>
+     </tr>
+  	</div>
+	  <div class="field">
+     <tr>
+     	 <td> <%= f.label :description %> </td><br />
+   	    <td><%= f.text_area :description , :cols => "40", :rows => "10"%></td>
+      </td>
+  	</div>
+  
+  	 <div class="actions">
+  	  <tr> 
+        <td><%= f.submit %></td>
+      </tr>
+  	</div>
+</table>
+<% end %>

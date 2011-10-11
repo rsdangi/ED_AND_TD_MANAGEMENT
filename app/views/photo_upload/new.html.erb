@@ -1,0 +1,5 @@
+<% form_for :photo_upload, @photo, :url => "/users/#{@user_id}/photo_upload", :html => { :multipart =>true} do |form| %>
+  <%= form.file_field :avatar %><br>
+  <%= submit_tag 'upload image '%>
+<% end %>
+

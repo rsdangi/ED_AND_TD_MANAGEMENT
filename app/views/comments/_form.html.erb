@@ -1,0 +1,12 @@
+<%= form_for(@comments ,:url=>"/users/#{current_user.id}/posts/#{@post.id}/comments") do |f|%>
+<table align ="center">
+ <tr>
+  <th>comments</th>
+ </tr>
+ <tr>
+  <td><%= f.text_area :description%></td> <br />
+  </tr>
+ <tr> <td><%= f.submit%></td></tr>
+
+</table>
+<%end%>

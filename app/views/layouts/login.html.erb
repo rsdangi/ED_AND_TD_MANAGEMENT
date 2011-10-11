@@ -1,0 +1,18 @@
+<html>
+<head>
+  <title><%= yield :title%></title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+
+<div class="login_registration">
+
+ <%= link_to 'Login ' %>
+ <%= link_to ' Registration |' %><br>
+</div>-->
+ <%=yield %>
+ 
+</body>
+</html>

@@ -1,0 +1,102 @@
+<%= javascript_include_tag 'ajax_enter'%>
+<%= javascript_include_tag 'rails'%>
+<%= flash[:notice] %>
+<table align ="center" cellpadding="20" border="1">
+  <tr>
+    <th>
+			<%= link_to 'Title' ,post_sort_user_posts_path(current_user ,:sort =>@sort_by || "asc" ,:fields =>"title") %>
+		</th>
+    <th>
+			<%= link_to 'Description' ,post_sort_user_posts_path(current_user ,:sort =>@sort_by || "asc" ,:fields =>"description") %>
+		</th>
+   	<th>
+			Username
+		</th>
+   	<th>
+			Total liked
+		</th>
+  </tr>
+<% @posts.each do |post| %>
+  <tr>
+      <td><%= post.title %></td>
+      <td><%= post.description %></td>
+		  <% if User.find_by_id(post.users_id).nil? %>
+        <td> User deleted </td>
+      <% else %>
+         <td><%= User.find_by_id(post.users_id).username %></td>     
+      <% end %>
+     <td><div id="user_post_unlike_<%= post.id %>">Likes= <%= post.user_post_statuses.where("status = ? ",1).count%></div></td>
+ 	 <td>
+				<div style="margin-left:290px; margin-top:2px;"><%= button_to 'Show',  user_posts_path(current_user),:method=>"get" %></div>
+				<div style="margin-left:180px; margin-top:-25px;"><%= button_to 'Edit', edit_post_path(post) ,:method=>"get"%></div>
+				<div style="margin-left:220px; margin-top:-25px;"><%= button_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></div>
+        <div  style="margin-left:56px; margin-top:-25px;">	<input  type="button" value="like" id="like" onclick="like__unlike_post(this,'like ','unlike ','<%=current_user.id%>','<%=post.id%>')"></div>
+			  <div  style="margin-left:0px; margin-top:-25px;">	<input  type="button" value="unlike" id="unlike_post_<%=post.id%>" onclick="like__unlike_post(this,'like ','unlike ','<%=current_user.id%>','<%=post.id%>')"></div>
+		</td>	
+			<%#= link_to 'Total_like',find_status_user_post_path(current_user,post.id)%> 
+  <tr> <td>Comments</td>
+     <td colspan=7>
+		  	<% post.comments.each do  |comment|%>
+        <table id="comment_table">
+         <tr>             
+             <td> <div><%#=button_to "unlike","/users/#{current_user.id}/comments/#{comment.id}/comment_status_unlike",:method => "get"%>
+            </td>
+            <td></div><%#= button_to " like" ,"/users/#{current_user.id}/comments/#{comment.id}/comment_status_like" , :method => "get"%></td> 
+            <td colspan=3> 
+								<div id="users_like_unlike_count_<%=comment.id%>" style="width:130px;">
+									<%= comment.user_comment_statuses.where("status=?",1).count%>  other also like
+								</div>
+						<td>
+             <td></div><input  type="button" value="like" id="like" onclick="like_comment(this,'like ','unlike ','<%=current_user.id%>','<%=comment.id%>')"></b></td> 
+             <td></div><input  type="button" value="unlike" id="unlike_comment_<%=comment.id%>" onclick="like_comment(this,'like ','unlike ','<%=current_user.id%>','<%=comment.id%>')"></b></td>  
+             <td><div class ="comment_description"  style="float:50px;height:40px;background-color:white;width:400px;margin-left:60px;margin-right:30px;border:2px;"><%= comment.description %> </td></div><br />
+             <td><%= button_to "delete" ,"/users/#{current_user.id}/posts/#{post.id}/comments/#{comment.id}",:method=>"delete"%></td>
+        </tr>
+       </table>
+      <%end%>
+				<div class="comment_<%=post.id%>" style="margin-left:350px;height:40px;width:400px;">
+					<%= form_for(:comments,:url=>"/users/#{current_user.id}/posts/#{post.id}/comments",:remote=>true,:html => {:id => 'create_comment_form'+ post.id.to_s },:method=>"post",:update => { :success => "response"})  do |f|%>
+							<%= text_field_tag(:description, "Enter your comment...",:onFocus => "if(this.value==this.defaultValue) this.value='';",:onBlur => "if(this.value=='') this.value=this.defaultValue;") %>
+					<%end%>
+				</div>
+		 </td>
+  </tr>
+ <%end%>
+</table>
+<SCRIPT type="text/javascript">
+
+		$('create_comment_form74').observe("ajax:before", function(evt, xhr, settings){
+ 		});
+		$('create_comment_form74').observe("ajax:complete", function(evt, xhr, settings){
+ 		});
+		$('create_comment_form74').observe("ajax:success", function(request){
+       alert(request.memo.responseJSON["comment"]["post_id"]);
+       //console.info(request);
+       Event.observe('like', 'onclick', like_comment);
+	     var table = document.getElementById("comment_table");
+       var rowCount = table.rows.length;
+       alert("no of rows are"+rowCount);
+       var row = table.insertRow(rowCount);
+       var cell1 = row.insertCell(0);
+       comment_id= request.memo.responseJSON["comment"]["id"];
+       user_id =request.memo.responseJSON["comment"]["user_id"];
+       //cell1.innerHTML="<input id='like' type='button' value='like' onclick='alert(\"hello\")' />";
+       cell1.innerHTML="<input id='like' type='button' value='like' onclick='show();' />";
+       var cell2 = row.insertCell(1);
+       cell2.innerHTML="<input type='button' value='unlike'/>";
+       var cell3 = row.insertCell(2);
+       var element1 = document.createElement("input");
+       element1.type = "text";
+       element1.value=request.memo.responseJSON["comment"]["description"];
+       cell3.appendChild(element1);
+       var cell4 = row.insertCell(3);
+       cell4.innerHTML="<input type='button' value='delete'/>";
+ 		});
+		$('create_comment_form74').observe("ajax:failure", function(evt, xhr, settings){
+       alert("ajax:failure");
+ 		});
+		function show()
+		{
+		alert('hello ram');
+		}
+</SCRIPT>

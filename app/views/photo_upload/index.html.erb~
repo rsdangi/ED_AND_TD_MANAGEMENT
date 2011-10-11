@@ -1,0 +1,4 @@
+
+<% @photos.each do |photo| %>
+<div class ="images"><%= image_tag  photo.avatar.url %></div> 
+<%end%>

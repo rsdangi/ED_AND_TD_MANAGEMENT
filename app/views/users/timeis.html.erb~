@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <title>Ajax Demo</title>
+  
+  </head>
+  <body>
+    <h1>What time is it?</h1>
+    <div id="s">      
+      <%= link_to "Time is",:url => {:action=>"timeis_submit" },:remote => true %>
+    </div>
+  </body>
+</html>
+

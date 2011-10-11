@@ -1,0 +1,61 @@
+<%= content_for :title do%>
+	Users List
+
+<%end%>
+<%= javascript_include_tag 'ajax_enter','ajax_find','ajaxdestroy','ajax_change' %>
+<%#= javascript_include_tag 'ajax_find' %>
+<%= will_paginate(@users) %>
+<!--<script>
+function ajaxdestroy(user_id)
+{
+  var destroy_confirmation = confirm("do you want to delete ");
+ if(destroy_confirmation)
+  { alert('You are going to destroy'+user_id);
+   new Ajax.Request('/users/'+ user_id,
+		{ 
+  		method: 'delete',
+  		onSuccess: function(transport) {
+    	divObj = $("delete_record");
+    	divObj.innerHTML = transport.responseText;
+  	}
+		});
+  }else
+   {
+    alert("You do not want to delete the record");
+    return false;
+   }
+}
+</script> -->
+
+
+<%#= link_to "enter_value", enter_value_users_path %>
+
+<!--<div id="test_ajax" style="float:100%;background-color:cyan;margin-top:10%;width:20%;height:50%;">
+sachin
+<input type="button" onclick="ajax_enter('<%=timeis_users_path%>')" value="Submit">
+</div>
+<div class ="user">
+ <div id ="new_user"> <%= link_to 'Add new user', new_user_path %></div> -->
+<!--
+<table id="user_table" align="center" cellpadding="10" border="1">
+ 
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>    
+    <th>Address</th>
+    <th>Email</th>
+    <th>Mobile no</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  
+</table> -->
+<div id = "delete_record">
+<%= render "all_user"  %>
+</div>
+
+<div id = "field">
+
+</div>
+

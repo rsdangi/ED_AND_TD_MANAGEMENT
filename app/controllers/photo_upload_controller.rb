@@ -1,0 +1,29 @@
+class PhotoUploadController < ApplicationController
+  
+ def index
+   @photos = PhotoUpload.all
+
+ end  
+
+  def new
+
+   @user_id = params[:user_id]
+   @photo = PhotoUpload.new
+  end
+  
+  def edit
+  end
+
+  def create
+    #@photo = current_user.photo_uploads.create( params[:photo_upload])[other way to save]
+    @photo = PhotoUpload.create( params[:photo_upload])
+		@photo.user_id = params[:user_id]
+		@photo.save
+    redirect_to :controller=>'users', :action => 'index' 
+     
+  end
+  
+  def show
+  end
+
+end

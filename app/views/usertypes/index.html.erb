@@ -1,0 +1,19 @@
+<div class="flickr_pagination">
+<%= will_paginate(@usertypes) %>
+</div>
+<h1 align = "center">All user types </h1>
+<table align = "center" border ="1" cellpadding="20">
+<div class="add_new_user">
+ <p align="center" style ="font-size:20px;"><%= link_to 'Add new user type' , new_usertype_path %>
+</p></div>
+ <tr><th>Level</th></tr>
+   
+<%  @usertypes.each do |usertype| %>
+   <tr>
+   <td> <%= usertype.level%></td>
+   <td><%= link_to 'edit' , edit_usertype_path(usertype) %></td>
+   <td><%= link_to 'Destroy' , usertype , :method => :delete %></td>
+   </tr>
+   <% end %>
+
+</table>

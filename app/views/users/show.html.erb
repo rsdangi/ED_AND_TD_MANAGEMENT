@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+<table align="center" border = "1">
+<tr>
+  <th> 
+ <td>First name</td>
+         <td>Last name</td>
+  <td>Password</td> 
+  <td>Address</td>
+  <td>Email</td>
+  <td>Mobile number</td>
+</th> </tr>
+ <tr> 
+ <td><%= @user.username %></td>
+  <td><%= @user.last_name %></td>
+  <td><%= @user.password %></td>
+  <td><%= @user.address %></td>
+  <td><%= @user.email %></td>
+  <td><%= @user.mobile_no %> </td>
+</tr>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Back', users_path %>
+
+</table>

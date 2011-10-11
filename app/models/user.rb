@@ -1,0 +1,34 @@
+class User < ActiveRecord::Base
+   acts_as_authentic
+	 validates_presence_of :username, :last_name, :email#,:password,:password_confirmation
+ 	 validates_length_of :username,:last_name, :in => 3..20
+   validates_confirmation_of :email
+	
+	 validates_uniqueness_of :email
+   validates_format_of :username,:last_name,:with => /\A[a-zA-Z]+\z/,
+    :message => "Only letters allowed"  
+	 validates_length_of :mobile_no, :is => 10
+   validates_numericality_of :mobile_no, :only_integer => true
+	# has_attached_file :avatar
+
+# 	 validates_confirmation_of :crypted_password,:unless => Proc.new { |a| a.password.blank? }
+	belongs_to :usertypes
+  has_many :posts 
+  has_many :user_post_statuses
+  has_many   :comments
+  has_many   :user_comment_statuses
+ def deliver_password_reset_instructions!  
+   reset_perishable_token!  
+   Notifier.deliver_password_reset_instructions(self)  
+ end  
+
+ def self.Is_user_exists(enter_user)
+  check_user = User.where("username = ?",enter_user)
+  if check_user.size==0
+    return false
+  else
+   return true
+  end
+   
+ end
+end

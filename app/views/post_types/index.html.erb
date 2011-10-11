@@ -1,0 +1,17 @@
+<div class="flickr_pagination">
+<%= will_paginate(@post_types) %>
+</div>
+<h1 align ="center">All post types</h1>
+<table align = "center" cellpadding = "20" border = "1" cellspacing = "1" >
+ <h2 align="center"><%= link_to 'Add post type' ,  new_post_type_path %></h2>
+  <tr> <th colspan = "">post type</th></tr> 
+    <% @post_types.each do |post_type| %>
+  <tr> 
+     <td><%= post_type.types %></td>
+     <td><%= link_to 'Edit' , edit_post_type_path(post_type) %></td>
+     <td><%= link_to 'Destroy' , post_type , :method => :delete %></td>    
+  </tr>
+ <% end %>
+</table>
+
+

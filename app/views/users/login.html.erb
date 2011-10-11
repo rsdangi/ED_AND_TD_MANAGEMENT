@@ -1,0 +1,19 @@
+<%= form_for(@user) do |f| %>
+<body text-align="center">
+<h1>user login</h1>
+<table align="center">
+<tr>
+	  <td> <%= f.label :User_name %><br /> </td>
+    <td> <%= f.text_field :first_name %>  </td></td>
+ 
+</tr>
+<tr>
+	<td><%= f.label :Password %><br /></td>
+	<td><%= f.password_field :password %</td>
+</tr>
+<tr>
+     <td><%= f.submit %></td> 
+</tr>
+</table>
+</body>
+<%end%>

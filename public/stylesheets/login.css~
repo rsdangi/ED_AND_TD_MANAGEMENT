@@ -1,0 +1,25 @@
+.login_top
+{
+width:372px;
+height:155px;
+margin-left:300px;
+margin-top:131px;
+background-color:MediumAquaMarine;
+
+}
+body
+{
+background-image:url("/images/blue-sky-field.jpg")
+
+}
+
+.user
+{
+margin-top:100px;
+margin-left:35px;
+font-size: 20px;
+margin-top:100px;
+}
+
+
+

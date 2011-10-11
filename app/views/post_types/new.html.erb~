@@ -1,0 +1,4 @@
+<h1>hello </h1>
+<%= render 'form' %>
+<%= link_to 'back' , post_types_path %>
+

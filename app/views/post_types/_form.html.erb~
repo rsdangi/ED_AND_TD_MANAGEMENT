@@ -1,0 +1,15 @@
+<%= form_for(@post_type) do |f| %>
+<table align = "center" >
+	<div class = "posttype" >
+  <tr>		
+    <td><%= f.label :Add_Post_type %></td><br>
+ 		<td><%= f.text_field  :types %> </td> 
+  </tr>
+	</div>
+	<div class = "action">
+ <tr> 
+		<td><%= f.submit %></td>
+ </tr> 
+	</div>
+ </table>	       
+<% end %>

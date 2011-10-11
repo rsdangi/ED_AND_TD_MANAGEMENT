@@ -1,0 +1,7 @@
+<h1 align ="center">Editing user</h1>
+
+<%= render 'form' %>
+<div align ="center" class="edit_user_profile" style="margin-left:400px;font-size:20px;margin-right:300px;margin-bottom:100px;margin-top:-32px;">
+<%= link_to 'Show', @user %> |
+<%= link_to 'Back', users_path %>
+</div>

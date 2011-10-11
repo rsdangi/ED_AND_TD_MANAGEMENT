@@ -1,0 +1,32 @@
+<div class = "users" style= "margin-left:10px;margin-right:10px;margin-top:70px;">
+<p><%= flash[:notice] %></p>
+<%= link_to "image_upload",new_user_photo_upload_path(current_user)%>
+<%= link_to "Show images",user_photo_upload_index_path(current_user)%>
+<table id="user_table" align="center" cellpadding="10" border="1">
+ <tr>
+    <th>First name</th>
+    <th>Last name</th>    
+    <th>Address</th>
+    <th>Email</th>
+    <th>Mobile no</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<% @users.each do |user| %>
+  <tr  onclick="ajax_find('<%=timeis_users_path%>', '<%= user.id %>' , ' <%=user.username %>' , ' <%=user.last_name %>')">
+  
+		 <td  onmouseover = "ajax_change('change','<%=users_path%>')"><div id ="change"> <%= user.username %></div></td>
+    <td><%= user.last_name %></td>
+    <td><%= user.address %></td>
+    <td><%= user.email %></td>
+    <td><%= user.mobile_no %></td>
+    <td><%= link_to 'Show', user %></td>
+    <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    <td><%#= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy' ,'#' ,:onclick=>"ajaxdestroy('#{user.id}')"%></td>
+  </tr>
+  
+<% end %>
+</table>
+</div>

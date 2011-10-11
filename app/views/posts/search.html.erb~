@@ -1,0 +1,24 @@
+<table align ="center" cellpadding="20" border="1">
+
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Users</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @posts.each do |post| %>
+  <tr>
+    <td><%= post.title %></td>
+    <td><%= post.description %></td>
+    <td><%= post.users_id %></td>
+    <td><%#= link_to 'Show',  user_posts_path(current_user) %></td>
+    <td><%#= link_to 'Edit', edit_post_path(post) %></td>
+    <td><%#= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+ </div>
+<% end %>
+
+</table>
