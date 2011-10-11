@@ -81,7 +81,7 @@
        comment_id= request.memo.responseJSON["comment"]["id"];
        user_id =request.memo.responseJSON["comment"]["user_id"];
        //cell1.innerHTML="<input id='like' type='button' value='like' onclick='alert(\"hello\")' />";
-       //cell1.innerHTML="<input id='like' type='button' value='like' onclick='show();' />";
+       cell1.innerHTML="<input id='like' type='button' value='like' onclick='show();' />";
        var cell2 = row.insertCell(1);
        cell2.innerHTML="<input type='button' value='unlike'/>";
        var cell3 = row.insertCell(2);
